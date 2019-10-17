@@ -84,7 +84,7 @@ t_matrix read_matrix()
 	if (!output_is_being_redirected())
 		printf("Input the size of the matrix: Width x Height:\n");
 
-	scanf("%u%u", &width, &height);
+	scanf("%lu%lu", &width, &height);
 
 	matrix = init_matrix(width, height);
 	read_matrix_tab(matrix);
