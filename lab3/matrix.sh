@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# Create matrix:
+# Example: matrix <matrix_name> <dimension1> <dim2> ... <dim_n> 
 matrix() {
 	local dims=${@:2}
 	
@@ -17,7 +20,9 @@ matrix() {
 	done
 }
 
-
+# Creates a list of indexes.
+# Example: get_subscripts <matrix_name>
+# Output: 1,1 1,2 2,1 2,2
 get_subscripts() {
 	local -n "mat=$1"
 
@@ -34,7 +39,8 @@ get_subscripts() {
 	eval echo $s
 }
 
-
+# Fill a matrix with a value
+# Example: fill <matrix_name> <nb>
 fill() {
 	local val=$2
 	for subscript in `get_subscripts $1`; do
@@ -51,6 +57,8 @@ fillrand() {
 	done
 }
 
+# Get item by index
+# Example: get <matrix_name> 2,2
 get() {
 	local -n "mat=$1"
 
@@ -63,6 +71,7 @@ get() {
 	echo $el
 }
 
+# Example: set <matrix_name> 4,4,2 <value>
 set() {
 	local -n "mat=$1"
 	subscript=$2
@@ -79,7 +88,7 @@ set() {
 	fi
 }
 
-
+# Example: out <matrix_name>
 out() {
 	local -n "mat=$1"
 	for subscript in `get_subscripts $1`; do
@@ -87,6 +96,8 @@ out() {
 	done
 }
 
+# Applies an operation and saves the output into the given var
+# Example: apply sum a + b
 apply() {
 	local -n "left=$2"
 	local -n "right=$4"
@@ -105,6 +116,7 @@ apply() {
 	done
 }
 
+# Reads the matrix values from stdin
 input() {
 	for s in `get_subscripts $1`; do
 		while true; do
@@ -117,16 +129,8 @@ input() {
 	done
 }
 
-# matrix a 4 4
-# fill a 2
-# matrix b 4 4
-# input b
-# out b
-# apply A+B a + b
-# out A+B
-
 while true; do
-	echo -n "$>"
-	read cmd
-	eval $cmd
+    echo -n "matrix $>";
+    read line;
+    eval $line;
 done
