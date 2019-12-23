@@ -69,6 +69,14 @@ So, here, from enp0s8 DROP any ICMP stuff from enp0s9.
 
 Apparently, it's required to specify that it's the ICMP protocol.
 
+### Final result
+
+1. From Firefox, xp00 & xp01 can't access facebook
+2. From Firefox, xp00 can't access jurnaltv but can access protv.
+3. From Firefox, xp01 can't access protv but can access jurnaltv
+4. From cmd, xp00 can't ping xp01
+5. From cmd, xp01 can ping xp00
+
 ## Conclusion
 In this lab, I grasped the basics of iptables.
 
