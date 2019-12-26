@@ -1,11 +1,6 @@
 import argparse
 import random
-
-
-def gcd(a, b):
-    while b != 0:
-        a, b = b, a % b
-    return a
+from math import gcd
 
 
 def multiplicative_inverse(e, phi):
@@ -29,10 +24,7 @@ def multiplicative_inverse(e, phi):
         d = y1
         y1 = y
 
-    if temp_phi == 1:
-        return d + phi
-
-    raise Exception()
+    return d + phi
 
 
 def is_prime(num):

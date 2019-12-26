@@ -1,2 +1,7 @@
 python3 ./src/main.py --p 1039 --q 1103
 
+
+read PUBLIC_KEY PRIVATE_KEY RSA_N <  <(python3 src/rsa_keygen.py 5419 5573) && export PUBLIC_KEY PRIVATE_KEY RSA_N
+print $PUBLIC_KEY $PRIVATE_KEY $RSA_N
+
+python3 src/encrypt.py $PRIVATE_KEY $RSA_N < stalin.txt | python3 src/decrypt.py $PUBLIC_KEY $RSA_N

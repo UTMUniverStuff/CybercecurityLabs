@@ -7,8 +7,7 @@ from utils import double_expo
 
 def encrypt(message: Iterable[int], public_key: Tuple[int, int]):
     key, n = public_key
-    for m in message:
-        yield double_expo(m, key, n)
+    return (double_expo(m, key, n) for m in message)
 
 
 def _parse_argv():
@@ -19,9 +18,15 @@ def _parse_argv():
     return parser.parse_args()
 
 
+def _read_msg():
+    for line in sys.stdin:
+        for c in line:
+            yield ord(c)
+
+
 def main():
     argv = _parse_argv()
-    message = sys.stdin.buffer.read()
+    message = _read_msg()
     encrypted = encrypt(message, (argv.key, argv.n))
 
     for nb in encrypted:

@@ -11,7 +11,7 @@ def decrypt(encrypted_message: Iterable[int], private_key: Tuple[int, int]):
 
 
 def _read_ints():
-    for line in sys.stdin.readlines():
+    for line in sys.stdin:
         yield int(line)
 
 
@@ -26,8 +26,9 @@ def _parse_argv():
 def main():
     argv = _parse_argv()
     encrypted_msg = _read_ints()
-    message = bytes(decrypt(encrypted_msg, (argv.key, argv.n)))
-    print(message.decode('utf8'))
+    for nb in encrypted_msg:
+        message = list(decrypt([nb], (argv.key, argv.n)))
+        print(chr(message[0]), end='')
 
 
 if __name__ == '__main__':
